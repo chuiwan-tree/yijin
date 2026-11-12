@@ -153,7 +153,7 @@ function arriveGate(st, out) {
 function gust(st, out) {
   var s = STRENGTH[st.day], p = st.pos, lg = st.log[st.log.length - 1];
   out.push("一阵风刮过来。");
-  if (!(p in WINDY)) { out.push("你在墙根底下，风从你头顶过去了。"); return; }
+  if (!(p in WINDY)) { if (st.saw_wall) { out.push("风从路口那边过去了。"); } else { st.saw_wall = true; out.push("风顺着路口过去了。你站的这一格不是风口，没刮着你。"); } return; }
   if (p === GATE && s < 2 && !st.jam) {
     out.push("风把你托起来半尺，你一把抓住了门框。");
     out.push("这阵风再大一点，你就上去了。");
