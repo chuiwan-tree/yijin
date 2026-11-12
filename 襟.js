@@ -83,7 +83,7 @@ function statusText(st) {
   if (stand.length) out.push("街上：" + stand.join("，") + "。");
   if (st.crowdUntil > 0 && st.t < st.crowdUntil) out.push("门口围着一圈人在看陀螺转。");
   if (st.pos === GATE && st.jam) out.push("门口挤成一团，你夹在中间，脚不沾地，还要挤 " + st.jam + " 下才进得去（最后一下就进门）。");
-  if (has(st.gusts, st.t + 1)) out.push("落叶在地上打起转来了。");
+  if (has(st.gusts, st.t + 1) && f.length) out.push(f[0] + "扯了扯你的衣襟，朝地上努嘴：落叶打起转来了。");
   var inv = THINGS.filter(function (t) { return st.inv[t]; }).map(function (t) { return t + st.inv[t]; }).join("，");
   out.push("兜里：" + (inv || "空了") + "。　名册上你名字旁边的圈：" + st.circles + "。");
   return out.join("\n");
